@@ -16,10 +16,7 @@ import jakarta.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- *
- * @author Aristos
- */
+
 @Entity
 @Table(name = "CATEGORY")
 @XmlRootElement
