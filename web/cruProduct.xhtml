@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+          
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Δημιουργία Νέου Προϊόντος</title>
+    </h:head>
+    <h:body>
+        <h:outputText value="Ορισμός Νέου Προϊόντος"/>
+        <br />
+        <h:form>
+            <h:panelGrid columns="2">
+                
+                <h:outputLabel value="Κωδικός"/>
+                <h:inputText value="#{productManagedBean.product.id}"/>
+                
+                <h:outputLabel value="Όνομα"/>
+                <h:inputText value="#{productManagedBean.product.name}"/>
+                
+                <h:outputLabel value="Περιγραφή"/>
+                <h:inputText value="#{productManagedBean.product.description}"/>
+                
+                <h:outputLabel value="Τιμή"/>
+                <h:inputText value="#{productManagedBean.product.price}"/>
+                
+                <h:outputLabel value="Διαθεσιμότητα"/>
+                <h:selectOneMenu
+                    value="#{productManagedBean.product.availability}"
+                    hideNoSelectionOption ="false"
+                    >
+                    <f:selectItem itemValue="N" itemLabel="Όχι"/>
+                    <f:selectItem itemValue="Y" itemLabel="Ναι"/>
+                </h:selectOneMenu>
+                
+                <h:outputLabel value="Κατηγορία"/>
+                <h:selectOneMenu 
+                    value="#{productManagedBean.categoryId}"
+                    hideNoSelectionOption="false"
+                    >
+                    <f:selectItem
+                        itemLabel="-- Select One --"
+                        noSelectionOption="true"
+                        itemDisabled="false"/>
+                    <f:selectItems value="#{categoryMenu.categories}"
+                                   var="cat"
+                                   itemValue="#{cat.id}"
+                                   itemLabel="#{cat.name}"/>
+                </h:selectOneMenu>
+            </h:panelGrid>
+            
+            <br />
+            <h:commandButton action="#{productManagedBean.createProduct()}"
+                             value="Αποθήκευση"/>
+            </h:form>
+        
+        <br />
+        <h:button outcome="productCatalog"
+                  value="Cancel - Επιστροφή στον Κατάλογο Προϊόντων"/>
+    </h:body>
+</html>

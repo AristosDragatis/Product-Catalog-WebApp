@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Κατάλογος Προϊόντων</title>
+    </h:head>
+    <h:body>
+        <f:event listener="#{productManagedBean.loadProductsPreRender}"
+                 type="preRenderView">
+        </f:event>
+        <h1>Κατάλογος Προϊόντων</h1>
+        <h:form>
+            <h:outputText value="Δεν βρέθηκαν προϊόντα"
+                          rendered="#{productManagedBean.products.size() == 0}"/>
+            <h:dataTable value="#{productManagedBean.products}" var="item"
+                         rendered="#{productManagedBean.products.size() > 0}">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Κωδικός"/>
+                    </f:facet>
+                    <h:outputText value="#{item.id}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Όνομα"/>
+                    </f:facet>
+                    <h:outputText value="#{item.name}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Περιγραφή"/>
+                    </f:facet>
+                    <h:outputText value="#{item.description}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Τιμή"/>
+                    </f:facet>
+                    <h:outputText value="#{item.price}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Διαθεσιμότητα"/>
+                    </f:facet>
+                    <h:outputText value="#{item.availability}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Κατηγορία"/>
+                    </f:facet>
+                    <h:outputText value="#{item.category.name}"/>
+                </h:column>
+            </h:dataTable>
+            
+            <h:commandButton action="#{productManagedBean.prepareCreateProduct()}"
+                             value="Δημιουργία Νέου Προϊόντος"/>
+        </h:form>
+    </h:body>
+</html>
